@@ -5,13 +5,15 @@
 
 //function currentRound(curWord)
 //{	
+  var dictionary=['jarvis','hammer','asgardian'];
+  var wins=0;
+
 	var dispWord=null;
 	var letters=[];
   var pst=[];
 	var guesses = 7;
 	var ltr;
   var curWord='assist';
-  var wins=0;
   var isWin=null;
 	
   dispWord=Array(curWord.length+1).join('_');
@@ -22,7 +24,7 @@
   document.onkeyup = function(e)
   {
     ltr=e.key.toLowerCase();
-    if(guesses>0 && isWin!=true)
+    if(guesses>0 && isWin!=true && isAlpha(ltr))
     {
        currentRoundInput(ltr);
     }
@@ -35,14 +37,16 @@ function currentRoundInput(ltr)
   {  
     
     pst=findPosition(curWord, ltr);
-  
-    if (pst.length>0)
-     {
-       dispWord=displayWord(dispWord, pst, ltr);
-    }
-    else{
-      guesses=guesses-1;
-      letters.push(ltr);
+    if ((!(dispWord.includes(ltr)))&&(!(letters.includes(ltr))))
+    {      
+        if (pst.length>0)
+         {
+           dispWord=displayWord(dispWord, pst, ltr);
+        }
+        else if(!(letters.includes(ltr))){
+          guesses=guesses-1;
+          letters.push(ltr);
+        }
     }
     
     if(dispWord===curWord)
@@ -53,7 +57,8 @@ function currentRoundInput(ltr)
     }
     letter.innerHTML=letters.join(" ").toUpperCase();
     play.innerHTML=dispWord.split("").join(" ").toUpperCase();
-    lives.innerHTML=guesses;    
+    lives.innerHTML=guesses;   
+
   }
 
 
@@ -85,6 +90,13 @@ function displayWord(dispWord, position, ltr)
   
   return dispStrArr.join("");
   
+}
+
+/*Function to check if keyin is alphabets*/
+
+function isAlpha(ltr){
+  var aplha="abcdefghijklmnopqrstuvwxyz";
+  return(aplha.split("").includes(ltr));
 }
 
 /*Function to keep track of words already displayed in
