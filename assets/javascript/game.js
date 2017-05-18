@@ -1,8 +1,8 @@
 
 /*Define & initialize Global variables defining dictionary & wins that is 
 for the entire game*/
-  var dictionary=['jarvis','hammer','asgard', 'tesseract', 
-'infinitystones', 'vibranium', 'ultron', 'hydra'];
+  var dictionary=['jarvis','mjolnir', 'xandar', 'asgard', 
+'tesseract', 'wakanda', 'ragnarok', 'infinitystones', 'vibranium', 'ultron', 'hydra', ];
   var wins=0;
 
 /*Define Global variables that would be used for each round of  

@@ -3,31 +3,60 @@
 <head>
 	<title>Hangman</title>
 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<!--Link the reset css-->
 	<style type="text/css" src="assets/css/reset.css"></style>
 
+	<!--CSS to style the website using Bootstrap classes-->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<!--CSS to apply theme to the website using Bootswatch theme called Slate-->
+	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/slate/bootstrap.min.css">
+
 	<!--Link the style css-->
-	<style type="text/css" src="assets/css/style.css"></style>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-	<p>Enter a character</p>
 
-	<!--Get inputs from keyboard, display & fillin words display scores and lives-->
-	<p>Letters Missed: <span id="letter"></span></p>
-	<p>Play Word: <span id="play"></span></p>
-	<p>Lives Left: <span id="lives"></span></p>
-	<p>Wins: <span id="win"></span></p>
+	<div class="container">
+		<div class="row text-center">
+			<h1>Play Hangman</h1>
+		</div>
 
-	<!--display the game word if user misses-->
-	<p id="theword"></p>
+		<div class="jumbotron">
+			<div class="row">
+				<div class="col-md-6 text-justify center-block">
+					<!--Get inputs from keyboard, display & fillin words display scores and lives-->
+					<p>Letters Missed: <span id="letter"></span></p>
+					<p>Play Word: <span id="play"></span></p>
+					<p>Lives Left: <span id="lives"></span></p>
+					<p>Wins: <span id="win"></span></p>
 
-	<!--prompt to continue game-->
-	<p id="wantmore"></p>
+					<!--display the game word if user misses-->
+					<p id="theword"></p>
 
+					<!--prompt to continue game-->
+					<p id="wantmore"></p>
+				</div>
 
-	<!--Display hangman stick figure if possible-->
+				<div class="col-md-6 text-justify">
+		
+					<!--Display hangman stick figure if possible-->
+					<img src="http://lorempixel.com/200/300/" class="center-block">
 
+				</div>
+			</div>
+			
+			<!--section for footer-->
+			<div class="container footer navbar-fixed-bottom">
+			     <p class="text-muted text-center">&copy; 2017 Copyright Gowri M Rajasekaran</p>
+			</div>
+		</div>
+	</div>
 	<!--Link the javascript-->
 	<script type="text/javascript" src="assets/javascript/game.js"></script>
+
 </body>
 </html>
