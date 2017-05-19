@@ -4,18 +4,20 @@ for the entire game*/
   var dictionary=['jarvis','mjolnir', 'xandar', 'asgard', 
 'tesseract', 'wakanda', 'ragnarok', 'infinitystones', 'vibranium', 'ultron', 'hydra', ];
   var wins=0;
+  var losses=0;
 
 /*Define Global variables that would be used for each round of  
 play*/
   var dispWord, letters, pst, guesses, ltr, curWord,
-  isWin;
+  isWin, totWords;
   
 /*Play Hangman*/
 playHangman();
 
 /*Start the game*/
 function playHangman()
-{
+{ 
+  totWords=dictionary.length;
 	currentRoundInitialize();
        
   document.onkeyup = function(e)
@@ -50,6 +52,7 @@ function currentRoundInitialize()
   play.innerHTML=dispWord.split("").join(" ");
   lives.innerHTML=guesses;
   win.innerHTML=wins;
+  lose.innerHTML=losses;
   letter.innerHTML='';
   wantmore.innerHTML="";
   theword.innerHTML="";
@@ -82,13 +85,20 @@ function currentRoundPlay(ltr)
         }
     }
     
-    //calculates the win if display and current word matches
-    if(dispWord===curWord)
-    {
-      wins=wins+1;
-      win.innerHTML=wins;
-      isWin=true;
-    }
+    //calculates the win & losses comparing display and current word
+    
+      if(dispWord===curWord)
+      {
+        wins=wins+1;
+        win.innerHTML=wins;
+        isWin=true;
+      }
+      else if(guesses===0)
+      {
+      losses=losses+1;
+      lose.innerHTML=losses;
+      }
+    
 
     //calls the function to update the display for current keyin
     currentRoundDisplay();
@@ -101,12 +111,22 @@ function currentRoundDisplay()
     letter.innerHTML=letters.join(" ").toUpperCase();
     play.innerHTML=dispWord.split("").join(" ").toUpperCase();
     lives.innerHTML=guesses;  
-    if(isWin===true || guesses===0)
-    {
-        wantmore.innerHTML="Press Any key to continue";
+    if(isWin===true || guesses===0 || totWords===(wins+losses))
+    {   
+        //to check if current round or the game is over
+        if(totWords===(wins+losses))
+        {
+          wantmore.innerHTML="Game Over, Thanks for playing!!";
+        }
+        else
+        {
+          wantmore.innerHTML="Press Any key to continue";
+        }
+
+        //to display the current play word if user lost
         if(guesses===0)
         {
-          theword.innerHTML="Sorry you lost, it was "+curWord.toUpperCase();
+          theword.innerHTML="Sorry you lost, it's "+curWord.toUpperCase();
         }
     } 
 }
