@@ -1,15 +1,24 @@
 
 /*Define & initialize Global variables defining dictionary & wins that is 
 for the entire game*/
-  var dictionary=['jarvis','mjolnir', 'xandar', 'asgard', 
-'tesseract', 'wakanda', 'ragnarok', 'infinitystones', 'vibranium', 'ultron', 'hydra', ];
+  var dictionary=['jarvis','mjolnir', 'xandar', 'asgard',
+'tesseract', 'wakanda', 'ragnarok', 'infinitystones', 'vibranium', 'ultron', 'hydra'];
+
+  var hints={'jarvis':'Assistant of Iron Man','mjolnir':'The Hammer!!', 'xandar':'place', 'asgard':'Where Gods live', 
+'tesseract':'precious', 'wakanda':'Black Panther', 'ragnarok':'Thor 3', 'infinitystones':'stones', 'vibranium':'metal',
+ 'ultron':'villain', 
+'hydra': 'Criminal organization in Marvel world or a bug that keeps spawning new bugs'};
+
+  var livestext=['YOU GOT EATEN!!', 'Its close', 'Maybe I should run', 'He has not seen me yet', 'uh..oh..', 
+  '(ominous music continues...)', '(ominous music plays..)', 'On a nice sunny day']
+
   var wins=0;
   var losses=0;
 
 /*Define Global variables that would be used for each round of  
 play*/
   var dispWord, letters, pst, guesses, ltr, curWord,
-  isWin, totWords;
+  isWin, totWords, curHint;
   
 /*Play Hangman*/
 playHangman();
@@ -23,14 +32,29 @@ function playHangman()
   document.onkeyup = function(e)
   {
     ltr=e.key.toLowerCase();
-    if(guesses>0 && isWin!=true && isAlpha(ltr))
-    {
-       currentRoundPlay(ltr);
-    }
-    else if(isWin===true || guesses===0)
+    wantmore.innerHTML="";
+
+  if(!isGameOver())
+  {  
+    if(isWin===true || guesses===0)
     {
         currentRoundInitialize();        
     }
+    else if(!(isAlpha(ltr)))
+    { 
+      wantmore.style.background="#393e46";
+      wantmore.innerHTML="Not a valid letter";
+    }
+    else if(isPlayed(ltr))
+    { 
+      wantmore.style.background="#393e46";
+      wantmore.innerHTML=ltr.toUpperCase() + " has already been played";
+    }
+    else if(guesses>0 && isWin!=true && isAlpha(ltr))
+    {
+       currentRoundPlay(ltr);
+    }
+  }
   }
 } 	
 
@@ -46,16 +70,22 @@ function currentRoundInitialize()
   guesses = 7;
   ltr;
   curWord=dictionary.pop(); 
+  curHint=hints[curWord];
   isWin=null;
 
   dispWord=Array(curWord.length+1).join('_');
-  play.innerHTML=dispWord.split("").join(" ");
-  lives.innerHTML=guesses;
+  play.style.color="#FFDC1A"
+  play.innerHTML="<b>"+dispWord.split("").join(" ")+"</b>";
+  lives.innerHTML=livestext[guesses];
   win.innerHTML=wins;
   lose.innerHTML=losses;
+  letter.style.color="red"
   letter.innerHTML='';
   wantmore.innerHTML="";
   theword.innerHTML="";
+  hinttext.innerHTML="";
+  hangimg.src="assets/images/init.png";
+  hangimg.alt="on a sunny day";
 }
 
 /*Function to calculate wins & lives for current
@@ -81,7 +111,14 @@ function currentRoundPlay(ltr)
         //if keyin is not part of current word adds it to letters missed and reduces lives
         else if(!(letters.includes(ltr))){
           guesses=guesses-1;
+          changeImg(guesses);
           letters.push(ltr);
+        }
+
+        if(guesses<3)
+        {
+          hinttext.style.color="#ffe44d";
+          hinttext.innerHTML="HINT: " + curHint;
         }
     }
     
@@ -95,8 +132,8 @@ function currentRoundPlay(ltr)
       }
       else if(guesses===0)
       {
-      losses=losses+1;
-      lose.innerHTML=losses;
+        losses=losses+1;
+        lose.innerHTML=losses;
       }
     
 
@@ -108,25 +145,35 @@ function currentRoundPlay(ltr)
 
 function currentRoundDisplay()  
 {
+    
     letter.innerHTML=letters.join(" ").toUpperCase();
     play.innerHTML=dispWord.split("").join(" ").toUpperCase();
-    lives.innerHTML=guesses;  
-    if(isWin===true || guesses===0 || totWords===(wins+losses))
+    lives.innerHTML=livestext[guesses];  
+    if(isWin===true || guesses===0 || isGameOver())
     {   
         //to check if current round or the game is over
-        if(totWords===(wins+losses))
+        if(isGameOver())
         {
-          wantmore.innerHTML="Game Over, Thanks for playing!!";
+          console.log=isGameOver();
+          theword.style.color="#FFDC1A";
+          theword.innerHTML="<h2>Game Over, Thanks for playing!!</h2>";
         }
         else
-        {
-          wantmore.innerHTML="Press Any key to continue";
+        { 
+          wantmore.style.background="#393e46";
+          wantmore.innerHTML="Press any key to continue...";
         }
 
         //to display the current play word if user lost
-        if(guesses===0)
+        if(guesses===0 && !(isGameOver()))
         {
-          theword.innerHTML="Sorry you lost, it's "+curWord.toUpperCase();
+          theword.style.color="red";
+          theword.innerHTML="&#x1f494; Sorry you lost this round, it's "+curWord.toUpperCase()+" &#x1f494;";
+        }
+        else if(isWin===true && !isGameOver())
+        {
+          theword.style.color="#2cf152";
+          theword.innerHTML="&#9733;&#9733;&#9733; You won this round &#9733;&#9733;&#9733;";
         }
     } 
 }
@@ -169,5 +216,23 @@ function isAlpha(ltr){
   return(aplha.split("").includes(ltr));
 }
 
+/*Function to check if keyin is alphabets*/
+
+function isPlayed(ltr){
+  return(letters.includes(ltr) || dispWord.split("").includes(ltr));
+}
+
 
 /*Function to display Hangman Figure*/
+function changeImg(imgnum)
+{
+  var imgpath="assets/images/"+imgnum+".png";
+  hangimg.src=imgpath;
+  hangimg.alt=imgnum+".png";
+}
+
+/*Function to check if game is over*/
+
+function isGameOver(){
+  return(totWords===(wins+losses));
+}

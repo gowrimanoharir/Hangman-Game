@@ -1,14 +1,57 @@
-.jumbotron{
-	margin:2% auto;
+body{
+	background-image: url('../images/ep_naturalblack.png');
 }
 
-h1{
+.maindiv, h3, h2{
+	font-family: 'Questrial', sans-serif;
+}
+
+.maindiv{
+	color: #00a7f3;	
+}
+
+
+.hdrfnt{
+	font-family: 'Orbitron', sans-serif;
+	font-size: 40px;
+	font-weight: bold;
+	color: #00a7f3;
+}
+
+
+h1, .topm{
 	margin-top: 3%;
 }
+
+.toptm{
+	margin-top: 6%;
+}
+
+.score{
+	color: #FFDC1A;
+	font-size: 20px;
+	font-family: 'Exo', sans-serif;
+}
+
+.underline{
+	border-bottom: 1px solid #00a7f3;
+	color: #00a7f3;
+}
+
+.pad{
+	margin-top: 10px;
+}
+
+
 
 /*Change width and background for footer section*/
 .footer{
 	width: 100%;
 	background-color: #1c1e22;
-	
+	padding-top: 5px;
 }
+
+
+
+
+
