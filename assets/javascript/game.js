@@ -4,10 +4,17 @@ for the entire game*/
   var dictionary=['jarvis','mjolnir', 'xandar', 'asgard',
 'tesseract', 'wakanda', 'ragnarok', 'infinitystones', 'vibranium', 'ultron', 'hydra'];
 
-  var hints={'jarvis':'Assistant of Iron Man','mjolnir':'The Hammer!!', 'xandar':'place', 'asgard':'Where Gods live', 
-'tesseract':'precious', 'wakanda':'Black Panther', 'ragnarok':'Thor 3', 'infinitystones':'stones', 'vibranium':'metal',
- 'ultron':'villain', 
-'hydra': 'Criminal organization in Marvel world or a bug that keeps spawning new bugs'};
+  var hints={'jarvis':'Iron Man\'s AI',
+              'mjolnir':'The Hammer!!', 
+              'xandar':'Capital of Nova Empire where the Guardians first meet', 
+              'asgard':'Norse God\'s home', 
+              'tesseract':'Holds the Space stone', 
+              'wakanda':'Black Panther rules!!', 
+              'ragnarok':'Forthcoming great battle', 
+              'infinitystones':'There is six of these', 
+              'vibranium':'Captain\'s shield is made of...,
+              'ultron':'Rogue supervillain robot', 
+              'hydra': 'Criminal organization in Marvel world or a bug that keeps spawning new bugs in dev world'};
 
   var livestext=['YOU GOT EATEN!!', 'Its close', 'Maybe I should run', 'He has not seen me yet', 'uh..oh..', 
   '(ominous music continues...)', '(ominous music plays..)', 'On a nice sunny day']
