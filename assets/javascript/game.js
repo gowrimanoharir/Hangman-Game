@@ -1,24 +1,28 @@
 
-/*Define & initialize Global variables defining dictionary & wins that is 
-for the entire game*/
+/*Define Global variables that would be used for the entire Game*/
+
+//Define the Dictionary
   var dictionary=['jarvis','mjolnir', 'xandar', 'asgard',
 'tesseract', 'wakanda', 'ragnarok', 'infinitystones', 'vibranium', 'ultron', 'hydra'];
 
+//Define the hints corresponding to dictionary words
   var hints={'jarvis':'Iron Man\'s AI',
               'mjolnir':'The Hammer!!', 
-              'xandar':'Capital of Nova Empire where the Guardians first meet', 
+              'xandar':'Capital of Nova Empire where the Guardians first met', 
               'asgard':'Norse God\'s home', 
               'tesseract':'Holds the Space stone', 
               'wakanda':'Black Panther rules!!', 
-              'ragnarok':'Forthcoming great battle', 
-              'infinitystones':'There is six of these', 
-              'vibranium':'Captain\'s shield is made of...,
+              'ragnarok':'Forthcoming Thor\'s great battle', 
+              'infinitystones':'There are six of these', 
+              'vibranium':'Captain\'s shield is made of...',
               'ultron':'Rogue supervillain robot', 
               'hydra': 'Criminal organization in Marvel world or a bug that keeps spawning new bugs in dev world'};
 
+//Define the image subtext
   var livestext=['YOU GOT EATEN!!', 'Its close', 'Maybe I should run', 'He has not seen me yet', 'uh..oh..', 
   '(ominous music continues...)', '(ominous music plays..)', 'On a nice sunny day']
 
+//Define scores
   var wins=0;
   var losses=0;
 
@@ -27,10 +31,10 @@ play*/
   var dispWord, letters, pst, guesses, ltr, curWord,
   isWin, totWords, curHint;
   
-/*Play Hangman*/
+/*Start the game*/
 playHangman();
 
-/*Start the game*/
+/*Define the game function*/
 function playHangman()
 { 
   totWords=dictionary.length;
@@ -41,28 +45,28 @@ function playHangman()
     ltr=e.key.toLowerCase();
     wantmore.innerHTML="";
 
-  if(!isGameOver())
-  {  
-    if(isWin===true || guesses===0)
-    {
-        currentRoundInitialize();        
+    if(!isGameOver())
+    {  
+      if(isWin===true || guesses===0)
+      {
+          currentRoundInitialize();        
+      }
+      else if(!(isAlpha(ltr)))
+      { 
+        wantmore.style.background="#393e46";
+        wantmore.innerHTML="Not a valid letter";
+      }
+      else if(isPlayed(ltr))
+      { 
+        wantmore.style.background="#393e46";
+        wantmore.innerHTML="<b>"+ltr.toUpperCase()+"</b> has already been played";
+      }
+      else if(guesses>0 && isWin!=true && isAlpha(ltr))
+      {
+         currentRoundPlay(ltr);
+      }
     }
-    else if(!(isAlpha(ltr)))
-    { 
-      wantmore.style.background="#393e46";
-      wantmore.innerHTML="Not a valid letter";
     }
-    else if(isPlayed(ltr))
-    { 
-      wantmore.style.background="#393e46";
-      wantmore.innerHTML=ltr.toUpperCase() + " has already been played";
-    }
-    else if(guesses>0 && isWin!=true && isAlpha(ltr))
-    {
-       currentRoundPlay(ltr);
-    }
-  }
-  }
 } 	
 
 
@@ -104,7 +108,6 @@ function currentRoundPlay(ltr)
     //finds the position of current input in play word
     pst=findPosition(curWord, ltr);
 
-
     //checks to see if keyin is not already pressed
     if ((!(dispWord.includes(ltr)))&&(!(letters.includes(ltr))))
     {      
@@ -114,7 +117,6 @@ function currentRoundPlay(ltr)
          {
            dispWord=displayWord(dispWord, pst, ltr);
         }
-
         //if keyin is not part of current word adds it to letters missed and reduces lives
         else if(!(letters.includes(ltr))){
           guesses=guesses-1;
@@ -125,7 +127,7 @@ function currentRoundPlay(ltr)
         if(guesses<3)
         {
           hinttext.style.color="#ffe44d";
-          hinttext.innerHTML="HINT: " + curHint;
+          hinttext.innerHTML="HINT:  " + curHint;
         }
     }
     
@@ -143,7 +145,6 @@ function currentRoundPlay(ltr)
         lose.innerHTML=losses;
       }
     
-
     //calls the function to update the display for current keyin
     currentRoundDisplay();
 }
@@ -223,14 +224,14 @@ function isAlpha(ltr){
   return(aplha.split("").includes(ltr));
 }
 
-/*Function to check if keyin is alphabets*/
+/*Function to check if keyin is played*/
 
 function isPlayed(ltr){
   return(letters.includes(ltr) || dispWord.split("").includes(ltr));
 }
 
 
-/*Function to display Hangman Figure*/
+/*Function to display images based on lives left*/
 function changeImg(imgnum)
 {
   var imgpath="assets/images/"+imgnum+".png";

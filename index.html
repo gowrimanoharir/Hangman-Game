@@ -12,53 +12,53 @@
 	<!--CSS to style the website using Bootstrap classes-->
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<!--CSS to apply theme to the website using Bootswatch theme called Slate-->
-	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/slate/bootstrap.min.css">
-
-	<!--Link the style css-->
+	<!--Link the css with additional styles-->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-	<link href="https://fonts.googleapis.com/css?family=Bree+Serif|Bungee+Outline|Cabin|Exo|Kumar+One|Orbitron|Questrial|Titan+One" rel="stylesheet">
+	<!--Link the Google fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Orbitron|Questrial" rel="stylesheet">
 </head>
 <body>
 
 	<div class="container">
+		<!--Header section-->
 		<div class="row text-center">
 			<h1 class="hdrfnt">THE RUNNING MAN</h1>
+			<h6 class="subhdr">wannabe MCU Super hero?? better know your Marvel universe!!</h6>
 		</div>
-
+		
+		<!--Score section-->
 		<div class="row text-center score">
 			<p>Won: <span id="win"></span> | Lost: <span id="lose"></span></p>
 		</div>
 
-				
+		<!--Game section-->	
 		<div class="jumbotron maindiv">
 
 			<div class="row">
 				<h3 class="text-center"><span id="theword"></span></h3>
-				<div class="col-md-1">	
-				</div>
-				<div class="col-md-4 toptm text-center">
-					
-						<!--Get inputs from keyboard, display & fillin words display scores and lives-->
+				
+				<!--Play Word section-->
+				<div class="col-md-5 toptm text-center">					
+						<!--Get inputs from keyboard, display & fillin words display-->
 						<p>Play Word: <span id="play"></span></p>
 						<p><small>Letters Used: <small id="letter"></small></small></p>
 
-						<!--prompt to continue game-->
-						<p id="wantmore"></p>
-					
+						<!--prompt to continue game or wrong key-->
+						<p id="wantmore"></p>					
 				</div>
-
+				
+				<!--Play Image section-->
 				<div class="col-md-7 text-center topm">
 		
-					<!--Display hangman stick figure if possible http://lorempixel.com/400/300/-->
 					<img src="assets/images/init.png" class="center-block" alt="on a sunny day" id="hangimg">
 					<p class="pad"><i id="lives" class="underline"></i></p>
 
 				</div>	
 
 			</div>
-
+			
+			<!--Play word Hint section if user only have 2 lives left-->
 			<div class="row text-center">
 					<p id="hinttext" class="pad"></p>
 			</div>
@@ -68,7 +68,9 @@
 
 	<!--section for footer-->
 			<div class="container footer navbar-fixed-bottom">
-			     <p class="text-muted text-center">&copy; 2017 Copyright Gowri M Rajasekaran</p>
+			     <p class="text-muted text-center">
+			     	<span>&copy; 2017 Copyright Gowri M Rajasekaran&nbsp; &nbsp; &nbsp;  Image credits: gokul</span>
+			     </p>
 			</div>
 
 	<!--Link the javascript-->

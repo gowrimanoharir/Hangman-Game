@@ -1,16 +1,9 @@
+/*Change background image of the site*/
 body{
 	background-image: url('../images/ep_naturalblack.png');
 }
 
-.maindiv, h3, h2{
-	font-family: 'Questrial', sans-serif;
-}
-
-.maindiv{
-	color: #00a7f3;	
-}
-
-
+/*Style the Header*/
 .hdrfnt{
 	font-family: 'Orbitron', sans-serif;
 	font-size: 40px;
@@ -18,7 +11,30 @@ body{
 	color: #00a7f3;
 }
 
+.subhdr{
+	font-family: 'Orbitron', sans-serif;
+	color: #00a7f3;
+}
 
+/*Style the Score section*/
+.score{
+	color: #FFDC1A;
+	font-size: 20px;
+	font-family: 'Exo', sans-serif;
+}
+
+/*Style the Pay section*/
+.maindiv, h3, h2{
+	font-family: 'Questrial', sans-serif;
+}
+
+.maindiv{
+	color: #00a7f3;	
+	background-color: #1c1e22;
+}
+
+
+/*Add top margins to the header and playsections*/
 h1, .topm{
 	margin-top: 3%;
 }
@@ -27,12 +43,8 @@ h1, .topm{
 	margin-top: 6%;
 }
 
-.score{
-	color: #FFDC1A;
-	font-size: 20px;
-	font-family: 'Exo', sans-serif;
-}
 
+/*Style the image subtext*/
 .underline{
 	border-bottom: 1px solid #00a7f3;
 	color: #00a7f3;
@@ -41,8 +53,6 @@ h1, .topm{
 .pad{
 	margin-top: 10px;
 }
-
-
 
 /*Change width and background for footer section*/
 .footer{
