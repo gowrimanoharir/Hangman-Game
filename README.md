@@ -6,7 +6,7 @@
 
 ### What are you waiting for go be a Superhero
 
-https://gowrimanoharir.github.io/Hangman-Game
+https://gowrimanoharir.github.io/The-Running-Man-Game/
 
 ## Technologies Used
 
