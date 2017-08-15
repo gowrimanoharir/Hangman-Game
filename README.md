@@ -12,6 +12,6 @@ https://gowrimanoharir.github.io/The-Running-Man-Game/
 
     * HTML
     * CSS, Bootstrap
-    * Java Script
+    * JavaScript
 
 
